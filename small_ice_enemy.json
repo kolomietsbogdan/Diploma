@@ -1,0 +1,125 @@
+{
+    "format_version": "1.19.40",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:small_ice_enemy",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false
+        },
+        "events": {
+        },
+        "component_groups": {
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "height": 0.95,
+                "width": 0.95
+            },
+            "minecraft:custom_hit_test": {
+              "hitboxes": [
+                {
+                  "width": 1.25,
+                  "height": 3.75,
+                  "pivot": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            "minecraft:type_family": {
+                "family": [
+                    "small_ice_enemy"
+                ]
+            },
+            "minecraft:health": {
+              "value": 5
+            },
+            "minecraft:attack": {
+              "damage": 2
+            },
+            "minecraft:behavior.hurt_by_target": {
+              "alert_same_type": false,
+              "hurt_owner": false
+            },
+            "minecraft:behavior.nearest_attackable_target": {
+              "priority": 3,
+              "entity_types":[
+                {
+                  "filters": {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  "max_dist": 128
+                }
+              ],
+              "attack_interval": 0,
+              "attack_interval_min": 0,
+              "attack_owner": false,
+              "must_reach": false,
+              "must_see": false,
+              "must_see_forget_duration": 3,
+              "persist_time": 0,
+              "reselect_targets": false,
+              "scan_interval": 11,
+              "set_persistent": false,
+              "target_invisible_multiplier": 0.7,
+              "target_search_height": -1,
+              "target_sneak_visibility_multiplier": 0.8,
+              "within_radius": 128
+            },
+            "minecraft:follow_range": {
+              "value": 128
+            },
+            "minecraft:behavior.melee_attack": {
+              "priority": 2,
+              "melee_fov": 90,
+              "track_target": false,
+              "attack_types": "player",
+              "random_stop_interval": 0,
+              "reach_multiplier": 1.5,
+              "attack_once": false,
+              "require_complete_path": false,
+              "cooldown_time": 1
+            },
+            "minecraft:navigation.walk": {
+              "avoid_damage_blocks": false,
+              "avoid_portals": false,
+              "avoid_sun": false,
+              "avoid_water": false,
+              "blocks_to_avoid": [],
+              "can_breach": false,
+              "can_break_doors": false,
+              "can_jump": true,
+              "can_open_doors": false,
+              "can_open_iron_doors": false,
+              "can_pass_doors": true,
+              "can_path_from_air": false,
+              "can_path_over_lava": false,
+              "can_path_over_water": false,
+              "can_sink": true,
+              "can_swim": false,
+              "can_walk": true,
+              "can_walk_in_lava": false,
+              "is_amphibious": false
+            },
+            "minecraft:movement.basic": {
+              "max_turn": 30
+            },
+            "minecraft:movement": {
+              "value":0.335
+            },
+            "minecraft:physics": {
+              "has_collision": true,
+              "has_gravity": true
+            },
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            }
+        }
+    }
+}

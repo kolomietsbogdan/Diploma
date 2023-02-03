@@ -1,0 +1,192 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:snow_golem_boss_pray",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            //"runtime_identifier": "ghast",
+            "animations": {
+              "snow_golem_boss_pray":"controller.animation.snow_golem_boss_pray",
+              "snow_golem_boss_pray_direction":"animation.snow_golem_boss_pray_direction"
+            },
+            "scripts": {
+              "animate": [
+                "snow_golem_boss_pray_direction",
+                "snow_golem_boss_pray"
+              ]
+            }
+        },
+        "events": {
+          "activate_pray_1":{
+            "add": {
+              "component_groups": [
+                "activate_pray_1"
+              ]
+            }
+          },
+          "balcony_1":{
+            "remove": {
+              "component_groups": [
+                "activate_pray_1"
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "balcony_1"
+              ]
+            }
+          },
+          "no_balcony_1":{
+            "remove": {
+              "component_groups": [
+                "balcony_1"
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "balcony_0"
+              ]
+            }
+          },
+          "activate_pray_2":{
+            "add": {
+              "component_groups": [
+                "activate_pray_2"
+              ]
+            }
+          },
+          "balcony_2":{
+            "remove": {
+              "component_groups": [
+                "activate_pray_2"
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "balcony_2"
+              ]
+            }
+          },
+          "no_balcony_2":{
+            "remove": {
+              "component_groups": [
+                "balcony_2"
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "despawn"
+              ]
+            }
+          },
+          "despawn":{
+            "add": {
+              "component_groups": [
+                "despawn"
+              ]
+            }
+          }
+        },
+        "component_groups": {
+          "balcony_0":{
+            "minecraft:variant": {
+              "value": 0
+            }
+          },
+          "activate_pray_1":{
+            "minecraft:entity_sensor": {
+              "maximum_count": -1,
+              "minimum_count": 1,
+              "relative_range": true,
+              "require_all": false,
+              "sensor_range": 1,
+              "event_filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "snow_golem_boss"
+              },
+              "event": "balcony_1"
+            }
+          },
+          "balcony_1":{
+            "minecraft:variant": {
+              "value": 1
+            },
+            "minecraft:timer": {
+              "time": 2.2,
+              "looping": true,
+              "time_down_event": {
+                "event": "no_balcony_1",
+                "target": "self"
+              }
+            }
+          },
+          "activate_pray_2":{
+            "minecraft:entity_sensor": {
+              "maximum_count": -1,
+              "minimum_count": 1,
+              "relative_range": true,
+              "require_all": false,
+              "sensor_range": 1,
+              "event_filters": {
+                "test": "is_family",
+                "subject": "other",
+                "value": "snow_golem_boss"
+              },
+              "event": "balcony_2"
+            }
+          },
+          "balcony_2":{
+            "minecraft:variant": {
+              "value": 2
+            },
+            "minecraft:timer": {
+              "time": 2.2,
+              "looping": true,
+              "time_down_event": {
+                "event": "no_balcony_2",
+                "target": "self"
+              }
+            }
+          },
+          "despawn":{
+            "minecraft:instant_despawn": {
+              "remove_child_entities": false
+            }
+          }
+        },
+        "components": {
+            "minecraft:collision_box": {
+              "height": 0.00001,
+              "width": 0.000001
+            },
+            "minecraft:type_family": {
+              "family": [
+                  "pray"
+              ]
+            },
+            "minecraft:damage_sensor": {
+              "triggers": [
+                {
+                  "cause": "all",
+                  "deals_damage": false
+                }
+              ]
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:physics": {
+              "has_collision": false,
+              "has_gravity": false
+            },
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            }
+        }
+    }
+}

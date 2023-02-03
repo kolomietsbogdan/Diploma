@@ -1,0 +1,104 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:snow_golem_boss_spawn",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            "runtime_identifier": "ghast",
+            "animations": {
+              "snow_golem_boss_spawn_direction":"animation.snow_golem_boss_spawn_direction",
+              "snow_golem_boss_spawn":"animation.snow_golem_boss_spawn"
+            },
+            "scripts": {
+              "animate": [
+                {
+                  "snow_golem_boss_spawn_direction":"query.is_baby"
+                },
+                {
+                  "snow_golem_boss_spawn":"query.can_fly"
+                }
+              ]
+            }
+        },
+        "events": {
+          "minecraft:entity_spawned": {
+            "add": {
+              "component_groups": [
+                "direction"
+              ]
+            }
+          },
+          "direction":{
+            "add": {
+              "component_groups": [
+                "direction"
+              ]
+            }
+          },
+          "remove_direction":{
+            "remove": {
+              "component_groups": [
+                "direction"
+              ]
+            }
+          },
+          "activate":{
+            "add": {
+              "component_groups": [
+                "activate"
+              ]
+            }
+          },
+          "despawn":{
+            "add": {
+              "component_groups": [
+                "despawn"
+              ]
+            }
+          }
+        },
+        "component_groups": {
+          "direction":{
+            "minecraft:is_baby": {
+            }
+          },
+          "activate":{
+            "minecraft:can_fly": {
+            }
+          },
+          "despawn":{
+            "minecraft:instant_despawn": {
+              "remove_child_entities": false
+            }
+          }
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "height": 1,
+                "width": 1
+            },
+            "minecraft:type_family": {
+                "family": [
+                    "snow_golem_boss"
+                ]
+            },
+            "minecraft:damage_sensor": {
+              "triggers": [
+                  {
+                      "deals_damage": false
+                  }
+              ]
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            }
+        }
+    }
+}

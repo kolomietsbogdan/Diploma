@@ -1,0 +1,283 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:ice_crystal",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            "runtime_identifier": "ghast",
+            "animations": {
+              "ice_crystal":"animation.ice_crystal"
+            },
+            "scripts": {
+              "animate": [
+                {
+                  "ice_crystal":"query.can_fly"
+                }
+              ]
+            }
+        },
+        "events": {
+          "activate_ogre":{
+            "add": {
+              "component_groups": [
+                "activate_ogre"
+              ]
+            }
+          },
+            "rotation": {
+                "sequence": [
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 0
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_0"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_1"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 1
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_1"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_2"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 2
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_2"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_3"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 3
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_3"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_4"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 4
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_4"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_5"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 5
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_5"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_6"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 6
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_6"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_7"
+                      ]
+                    }
+                  },
+                  {
+                    "filters": {
+                      "test": "is_mark_variant", 
+                      "value": 7
+                    },
+                    "remove": {
+                      "component_groups": [
+                        "turn_7"
+                      ]
+                    },
+                    "add": {
+                      "component_groups": [
+                        "turn_0"
+                      ]
+                    }
+                  }
+                ]
+              }
+        },
+        "component_groups": {
+          "activate_ogre":{
+            "minecraft:can_fly": {
+            }
+          },
+            "turn_0":{
+                "minecraft:mark_variant": {
+                  "value": 0
+                }
+              },
+              "turn_1":{
+                "minecraft:mark_variant": {
+                  "value": 1
+                }
+              },
+              "turn_2":{
+                "minecraft:mark_variant": {
+                  "value": 2
+                }
+              },
+              "turn_3":{
+                "minecraft:mark_variant": {
+                  "value": 3
+                }
+              },
+              "turn_4":{
+                "minecraft:mark_variant": {
+                  "value": 4
+                }
+              },
+              "turn_5":{
+                "minecraft:mark_variant": {
+                  "value": 5
+                }
+              },
+              "turn_6":{
+                "minecraft:mark_variant": {
+                  "value": 6
+                }
+              },
+              "turn_7":{
+                "minecraft:mark_variant": {
+                  "value": 7
+                }
+            }
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "height": 1,
+                "width": 1
+            },
+            "minecraft:type_family": {
+                "family": [
+                    "ice_crystal"
+                ]
+            },
+            "minecraft:damage_sensor": {
+              "triggers": [
+                  {
+                      "on_damage": {
+                          "filters": [
+                              {
+                                  "all_of": [
+                                      {
+                                          "test":"is_family",
+                                          "subject": "other",
+                                          "value": "player"
+                                      },
+                                      {
+                                          "test":"has_equipment",
+                                          "subject": "other", 
+                                          "domain": "hand",
+                                          "value": "bone"
+                                      }
+                                  ]
+                              }
+                          ],
+                          "target": "self",
+                          "event": "rotation"
+                      },
+                      "deals_damage": false
+                  },
+                  {
+                    "on_damage": {
+                        "filters": [
+                            {
+                                "all_of": [
+                                    {
+                                        "test":"is_family",
+                                        "subject": "other",
+                                        "value": "player"
+                                    },
+                                    {
+                                      "test": "has_component",
+                                      "subject": "self",
+                                      "operator": "not",
+                                      "value": "minecraft:can_fly"
+                                    }
+                                ]
+                            }
+                        ],
+                        "target": "self",
+                        "event": "activate_ogre"
+                    },
+                    "deals_damage": false
+                },
+                  {
+                      "deals_damage": false
+                  }
+              ]
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            }
+        }
+    }
+}

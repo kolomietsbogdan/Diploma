@@ -1,0 +1,78 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:ice_boulder",
+            "is_spawnable": false,
+            "is_summonable": true,
+            "is_experimental": false,
+            "runtime_identifier": "minecraft:snowball",
+            "animations": {
+              "ice_boulder_activate":"controller.animation.ice_boulder_activate"
+            },
+            "scripts": {
+              "animate": [
+                "ice_boulder_activate"
+              ]
+            }
+    },
+    "component_groups": {
+      "activate":{
+        "minecraft:can_fly": {
+        }
+      },
+      "despawn":{
+        "minecraft:instant_despawn": {
+          "remove_child_entities": false
+        }
+      }
+    },
+    "events": {
+      "activate":{
+        "add": {
+          "component_groups": [
+            "activate"
+          ]
+        }
+      },
+      "despawn":{
+        "add": {
+          "component_groups": [
+            "despawn"
+          ]
+        }
+      }
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 0.5,
+        "height": 0.5
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": 4,
+            "knockback": true,
+            "semi_random_diff_damage": false,
+            "destroy_on_hit": false
+          },
+          "definition_event": {
+            "event_trigger": {
+              "event": "activate",
+              "target": "self"
+            }
+          }
+        },
+        "power": 1.5,
+        "gravity": 0.03,
+        "offset": [ 0, 5.5, -3 ]
+      },
+	    "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      }
+    }
+  }
+}

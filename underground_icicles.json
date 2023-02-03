@@ -1,0 +1,56 @@
+{
+    "format_version": "1.19.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "project_d:underground_icicles",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            "runtime_identifier": "ghast"
+        },
+        "events": {
+        },
+        "component_groups": {
+        },
+        "components": {
+            "minecraft:collision_box": {
+                "height": 1,
+                "width": 1
+            },
+            "minecraft:area_attack": {
+                "damage_per_tick": 1,
+                "damage_range": 1.0,
+                "entity_filter": {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                },
+                "cause": "attack"
+            },
+            "minecraft:type_family": {
+                "family": [
+                    "underground_icicles"
+                ]
+            },
+            "minecraft:damage_sensor": {
+              "triggers": [
+                  {
+                      "deals_damage": false
+                  }
+              ]
+            },
+            "minecraft:knockback_resistance": {
+                "value": 1
+            },
+            "minecraft:persistent": {},
+            "minecraft:physics": {
+              "has_collision": true,
+              "has_gravity": true
+            },
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": false
+            }
+        }
+    }
+}

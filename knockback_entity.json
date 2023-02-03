@@ -1,0 +1,59 @@
+{
+  "format_version": "1.19.0",
+ "minecraft:entity": {
+  "description": {
+    "identifier": "project_d:knockback_entity",
+    "is_spawnable": false,
+    "is_summonable": true,
+    "is_experimental": false
+  },
+  "components": {
+    "minecraft:type_family": {
+      "family": [
+        "knockback_entity"
+      ]
+    },
+   "minecraft:collision_box": {
+    "width": 1.0,
+    "height": 1.0
+   },
+   "minecraft:behavior.knockback_roar": {
+     "attack_time": 0.05,
+     "cooldown_time": 10,
+     "duration": 1,
+     "knockback_damage": 5,
+     "knockback_horizontal_strength": 5,
+     "knockback_range": 5,
+     "knockback_vertical_strength": 5,
+     "priority": 0,
+     "knockback_filters": {
+       "none_of": [
+         {
+           "test":"is_family",
+           "subject": "other",
+           "value": "snow_golem_boss"
+         },
+         {
+          "test":"is_family",
+          "subject": "other",
+          "value": "small_ice_enemy"
+        }
+       ]
+     }
+   },
+   "minecraft:explode": {
+     "breaks_blocks": false,
+     "causes_fire": false,
+     "destroy_affected_by_griefing": false,
+     "fire_affected_by_griefing": false,
+     "fuse_lit": true,
+     "max_resistance": 0,
+     "power": 0,
+     "fuse_length": [
+       0.1,
+       0.1
+     ]
+   }
+  }
+ }
+}
